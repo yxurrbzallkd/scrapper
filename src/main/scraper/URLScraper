@@ -1,0 +1,12 @@
+package scraper;
+
+public class URLScraper  {
+    public URLScraper() {
+        System.out.println("creating URLScraper'");
+    }
+
+    public String scrape(String url) {
+        //send real request
+        return "";
+    }
+}
