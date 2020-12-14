@@ -33,9 +33,11 @@ public class CacheScraper implements Scraper {
 
     public String checkPageInCache(String url) throws SQLException {
         ResultSet rs = statement.executeQuery("select url, page from cached where url='"+url+"'");
+        String yrl;
+        String pageText;
         while (rs.next()) {
-            String pageText = rs.getString("page");
-            System.out.println(pageText);
+            yrl = rs.getString("url");
+            pageText = rs.getString("page");
             if (pageText != null) {
                 return pageText;
             }
@@ -44,13 +46,13 @@ public class CacheScraper implements Scraper {
     }
 
     public void storeInCache(String url, String pageText) throws SQLException {
-        System.out.println("storing "+url+" in cache");
+        //System.out.println("storing "+url+" in cache");
         //implement storing in cache
-        statement.executeUpdate("insert into cached(url) values ('"+url+"')");
+        //statement.executeUpdate("insert into cached(url) values ('"+url+"')");
         PreparedStatement pstmt =
-                connection.prepareStatement("insert into cached(page) values (?)");
-        pstmt.setString(1, pageText);
-        statement.executeUpdate("insert into cached(url) values ('"+url+"')");
+                connection.prepareStatement("insert into cached(url, page) values (?, ?)");
+        pstmt.setString(2, pageText);
+        pstmt.setString(1, url);
         pstmt.executeUpdate();
         pstmt.close();
     }
