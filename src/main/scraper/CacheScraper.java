@@ -10,10 +10,11 @@ public class CacheScraper implements Scraper {
     private Statement statement;
 
     public CacheScraper(Scraper scraper) throws SQLException{
+        System.out.println("creating CacheScraper");
         this.scraper = scraper;
         //open database
         String db = "jdbc:sqlite:"+System.getProperty("user.dir")+"\\src\\main\\scraper\\cached.db";
-        System.out.println(db);
+        System.out.println("connecting to "+db);
         connection = DriverManager.getConnection(db);
         statement = connection.createStatement();
         statement.executeUpdate("drop table if exists cached");

@@ -6,7 +6,7 @@ import org.jsoup.nodes.Document;
 import java.io.IOException;
 
 public class URLScraper implements Scraper {
-    public URLScraper() { System.out.println("creating URLScraper'");
+    public URLScraper() { System.out.println("creating URLScraper");
     }
 
 
